@@ -77,13 +77,14 @@ void MapFieldGenerator::GenerateMembers(io::Printer* printer) {
   printer->Print(
     variables_,
     ", $tag$);\n"
-    "private readonly pbc::MapField<$key_type_name$, $value_type_name$> $name$_ = new pbc::MapField<$key_type_name$, $value_type_name$>();\n");
+    "private pbc::MapField<$key_type_name$, $value_type_name$> $name$_ = new pbc::MapField<$key_type_name$, $value_type_name$>();\n");
   WritePropertyDocComment(printer, descriptor_);
   AddPublicMemberAttributes(printer);
   printer->Print(
     variables_,
     "$access_level$ pbc::MapField<$key_type_name$, $value_type_name$> $property_name$ {\n"
     "  get { return $name$_; }\n"
+    "  set { $name$_ = value; }\n"
     "}\n");
 }
 
